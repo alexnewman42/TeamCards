@@ -173,7 +173,6 @@ const myFavoriteFootballTeam = {
 };
 
 Object.freeze(myFavoriteFootballTeam);
-
 const { sport, team, year, players } = myFavoriteFootballTeam;
 const {coachName} = myFavoriteFootballTeam.headCoach;
 
@@ -187,10 +186,13 @@ const setPlayerCards = (arr = players) => {
     ({ name, position, number, isCaptain, nickname }) => {
       `
         <div class="player-card">
-        <h2>${name}</h2>
+        <h2>${isCaptain ? "(Captain)" : ""}${name}</h2>
+        <p>Position: ${position}</p>
+        <p>Number: ${number}</p>
+        <p>Nickname: ${nickname ? nickname : "N/A"}
         </div>
       `;
     }
-  );
+  ).join("")
 };
 
