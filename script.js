@@ -3,7 +3,7 @@ const typeOfSport = document.getElementById("sport");
 const worldCupYear = document.getElementById("year");
 const headCoach = document.getElementById("head-coach");
 const playerCards = document.getElementById("player-cards");
-const playerDropdownList = document.getElementById("players");
+const playersDropdownList = document.getElementById("players");
 
 const myFavoriteFootballTeam = {
     team: "Argentina",
@@ -183,21 +183,21 @@ headCoach.textContent = coachName;
 
 const setPlayerCards = (arr = players) => {
   playerCards.innerHTML += arr.map(
-    ({ name, position, number, isCaptain, nickname }) => {
+    ({ name, position, number, isCaptain, nickname }) =>
       `
         <div class="player-card">
-        <h2>${isCaptain ? "(Captain)" : ""}${name}</h2>
+        <h2>${isCaptain ? "(Captain)" : ""} ${name}</h2>
         <p>Position: ${position}</p>
         <p>Number: ${number}</p>
-        <p>Nickname: ${nickname ? nickname : "N/A"}
+        <p>Nickname: ${nickname !== null ? nickname : "N/A"}</p>
         </div>
-      `;
-    }
-  ).join("")
+      `
+  ).join("");
 };
 
-playerDropdownList.addEventListener("change", (e) => {
+playersDropdownList.addEventListener("change", (e) => {
   playerCards.innerHTML = "";
+
   switch (e.target.value) {
     case "nickname":
       setPlayerCards(players.filter((player) => player.nickname !== null));
